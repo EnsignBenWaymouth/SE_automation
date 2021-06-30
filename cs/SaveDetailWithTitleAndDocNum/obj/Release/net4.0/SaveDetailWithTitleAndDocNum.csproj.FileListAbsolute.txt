@@ -1,0 +1,14 @@
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\SaveDetailWithTitleAndDocNum.exe.config
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\SaveDetailWithTitleAndDocNum.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\SaveDetailWithTitleAndDocNum.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\Interop.SolidEdge.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\SolidEdge.Community.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\SolidEdge.Community.AddIn.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\bin\Release\net4.0\SolidEdge.Community.Reader.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.AssemblyInfoInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.AssemblyInfo.cs
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.csproj.CoreCompileInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.csproj.CopyComplete
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SaveSheetAsEMF\cs\SaveDetailWithTitleAndDocNum\obj\Release\net4.0\SaveDetailWithTitleAndDocNum.csprojAssemblyReference.cache
