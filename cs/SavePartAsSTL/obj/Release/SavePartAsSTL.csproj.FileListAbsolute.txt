@@ -1,0 +1,14 @@
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SavePartAsSTL.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SavePartAsSTL.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\Interop.SolidEdge.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SolidEdge.Community.AddIn.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SolidEdge.Community.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SolidEdge.Community.Reader.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\Interop.SolidEdge.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SolidEdge.Community.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SolidEdge.Community.AddIn.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\bin\Release\SolidEdge.Community.Reader.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.csproj.CoreCompileInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.csproj.CopyComplete
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.pdb
