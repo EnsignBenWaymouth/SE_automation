@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "RUgNMuHzeFT+q+98eBmwXMQkWUPESgbBgJhxhxmxVsGqYgVlVVGuSVwbl0hM2Q3cKBYKCwI62GfWpK+AJ23Nnw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\benjaminw\\Documents\\Samples-master (1)\\Samples-master\\Draft\\SE Automation\\cs\\RemoveHiddenEdges\\RemoveHiddenEdges.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\benjaminw\\.nuget\\packages\\interop.solidedge\\220.2.0\\interop.solidedge.220.2.0.nupkg.sha512",
+    "C:\\Users\\benjaminw\\.nuget\\packages\\solidedge.community\\219.0.0\\solidedge.community.219.0.0.nupkg.sha512",
+    "C:\\Users\\benjaminw\\.nuget\\packages\\solidedge.community.addin\\219.0.0\\solidedge.community.addin.219.0.0.nupkg.sha512",
+    "C:\\Users\\benjaminw\\.nuget\\packages\\solidedge.community.reader\\2.0.0\\solidedge.community.reader.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

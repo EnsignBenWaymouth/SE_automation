@@ -1,0 +1,13 @@
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\RemoveHiddenEdges.exe.config
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\RemoveHiddenEdges.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\RemoveHiddenEdges.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\Interop.SolidEdge.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\SolidEdge.Community.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\SolidEdge.Community.AddIn.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\bin\Release\net4.0\SolidEdge.Community.Reader.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\obj\Release\net4.0\RemoveHiddenEdges.AssemblyInfoInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\obj\Release\net4.0\RemoveHiddenEdges.AssemblyInfo.cs
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\obj\Release\net4.0\RemoveHiddenEdges.csproj.CoreCompileInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\obj\Release\net4.0\RemoveHiddenEdges.csproj.CopyComplete
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\obj\Release\net4.0\RemoveHiddenEdges.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\RemoveHiddenEdges\obj\Release\net4.0\RemoveHiddenEdges.pdb

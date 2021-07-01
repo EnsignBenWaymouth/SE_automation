@@ -1,0 +1,74 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\benjaminw\\Documents\\Samples-master (1)\\Samples-master\\Draft\\SE Automation\\cs\\RemoveHiddenEdges\\RemoveHiddenEdges.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\benjaminw\\Documents\\Samples-master (1)\\Samples-master\\Draft\\SE Automation\\cs\\RemoveHiddenEdges\\RemoveHiddenEdges.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\benjaminw\\Documents\\Samples-master (1)\\Samples-master\\Draft\\SE Automation\\cs\\RemoveHiddenEdges\\RemoveHiddenEdges.csproj",
+        "projectName": "RemoveHiddenEdges",
+        "projectPath": "C:\\Users\\benjaminw\\Documents\\Samples-master (1)\\Samples-master\\Draft\\SE Automation\\cs\\RemoveHiddenEdges\\RemoveHiddenEdges.csproj",
+        "packagesPath": "C:\\Users\\benjaminw\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\benjaminw\\Documents\\Samples-master (1)\\Samples-master\\Draft\\SE Automation\\cs\\RemoveHiddenEdges\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\benjaminw\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net40"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net40": {
+            "targetAlias": "net4.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net40": {
+          "targetAlias": "net4.0",
+          "dependencies": {
+            "Interop.SolidEdge": {
+              "target": "Package",
+              "version": "[220.2.0, )"
+            },
+            "SolidEdge.Community": {
+              "target": "Package",
+              "version": "[219.0.0, )"
+            },
+            "SolidEdge.Community.AddIn": {
+              "target": "Package",
+              "version": "[219.0.0, )"
+            },
+            "SolidEdge.Community.Reader": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
