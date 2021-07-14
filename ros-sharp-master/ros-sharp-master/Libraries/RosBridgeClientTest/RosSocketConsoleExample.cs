@@ -189,6 +189,7 @@ namespace RosSharp.RosBridgeClientTest
                     double time_sum = 0;
                     int time_counter = 0;
 
+                    // Continuously update joints
                     while (true)
                     {
                         start = DateTime.Now;
@@ -198,12 +199,6 @@ namespace RosSharp.RosBridgeClientTest
                         angularRelations[3].Angle = pose_arr[3];
                         angularRelations[4].Angle = pose_arr[4] - Math.PI / 2;
                         angularRelations[5].Angle = pose_arr[5] + Math.PI;
-                        //angularRelations[0].Angle += 0.01;
-                        //angularRelations[1].Angle += 0.01;
-                        //angularRelations[2].Angle += 0.01;
-                        //angularRelations[3].Angle += 0.01;
-                        //angularRelations[4].Angle = pose_arr[4] - Math.PI / 2;
-                        //angularRelations[5].Angle = pose_arr[5] + Math.PI;
 
                         time_sum += (DateTime.Now - start).TotalMilliseconds;
                         time_counter++;
@@ -219,118 +214,13 @@ namespace RosSharp.RosBridgeClientTest
                         {
                             Console.WriteLine("Refreshing");
                             application.StartCommand(SolidEdgeConstants.AssemblyCommandConstants.AssemblyViewRefreshWindow);
-                        }
-                        
-                    }
-
-
-                    // Get a reference to the occurrences collection.
-                    while (true)
-                    {
-                        start = DateTime.Now;
-                        //System.Threading.Thread.Sleep(10);
-                        var occurrences = d.Occurrences;
-                        //Console.WriteLine("--------------\n--------------");
-                        double[] pose_buffer = new double[6];
-
-                        foreach (var occurrence in occurrences.OfType<SolidEdgeAssembly.Occurrence>())
-                        {
-                            if(occurrence.Name.Contains("Link1") || occurrence.Name.Contains("Link3") || occurrence.Name.Contains("Link5"))
-                            {
-                                //Console.WriteLine("Processing occurrence {0}.", occurrence.Name);
-                                var relations3d = (SolidEdgeAssembly.Relations3d)occurrence.Relations3d;
-                                //var axialRelations = relations3d.OfType<SolidEdgeAssembly.AxialRelation3d>();
-                                var angleRelations = relations3d.OfType<SolidEdgeAssembly.AngularRelation3d>();
-
-                                foreach (var an in angleRelations)
-                                {
-                                    string name = an.Occurrence1.Name;
-                                    //Console.WriteLine(name);
-
-                                    bool link1 = name.Contains(link1_str);                                
-                                    if (link1)
-                                    {
-                                        //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[0]);
-                                        an.Angle = pose_arr[2] + Math.PI/2;
-                                        //pose_buffer[0] = pose_arr[2] + Math.PI / 2;
-                                        continue;
-                                    }
-                                    bool link2 = name.Contains(link2_str);
-                                    if (link2)
-                                    {
-                                        //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[1]);
-                                        an.Angle = pose_arr[1] + Math.PI;
-                                        //pose_buffer[0] = pose_arr[1] + Math.PI;
-                                        continue;
-                                    }
-                                    bool link3 = name.Contains(link3_str);
-                                    if (link3)
-                                    {
-                                        //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[2]);
-                                        an.Angle = pose_arr[0] + Math.PI/2;
-                                        //pose_buffer[0] = pose_arr[0] + Math.PI / 2;
-                                        continue;
-                                    }
-                                    bool link4 = name.Contains(link4_str);
-                                    if (link4)
-                                    {
-                                        //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[3]);
-                                        an.Angle = pose_arr[3];
-                                        //pose_buffer[0] = pose_arr[3];
-                                        continue;
-                                    }
-                                    bool link5 = name.Contains(link5_str);
-                                    if (link5)
-                                    {
-                                        //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[4]);
-                                        an.Angle = pose_arr[4] - Math.PI/2;
-                                        //pose_buffer[0] = pose_arr[4] - Math.PI / 2;
-                                        continue;
-                                    }
-                                    bool link6 = name.Contains(link6_str);
-                                    if (link6)
-                                    {
-                                        //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[5]);
-                                        an.Angle = pose_arr[5] + Math.PI;
-                                        //pose_buffer[0] = pose_arr[5] + Math.PI;
-                                        continue;
-                                    }
-
-                                    //Console.WriteLine(link1);
-
-                                    //DateTime start = DateTime.Now;
-                                    //double t = ((TimeSpan)(DateTime.Now - start)).TotalMilliseconds;
-
-                                    //for (int i = 0; i < 180; i++)
-                                    //{
-                                    //an.Angle += Math.PI / 180 * i;
-                                    //System.Threading.Thread.Sleep(10);
-                                    //}
-                                }
-                            }
-
-                        }
-                        time_sum += (DateTime.Now - start).TotalMilliseconds;
-                        time_counter++;
-                        if(time_counter == 100)
-                        {
-                            double avg = time_sum/time_counter;
-                            Console.WriteLine("\nFPS: {0}\n", Math.Round(1000/avg));
-                            time_counter = 0;
-                            time_sum = 0;
-                        }
-                            
-                    }                    
+                        }                        
+                    }                                       
                 }
                 else
                 {
                     throw new System.Exception("No active document.");
                 }
-
-                //while (true)
-                //{
-                //    Console.WriteLine(pose_arr[2]);
-                //}
             }
             catch (System.Exception ex)
             {
@@ -340,7 +230,6 @@ namespace RosSharp.RosBridgeClientTest
             {
                 SolidEdgeCommunity.OleMessageFilter.Unregister();
             }
-
         }
         
 
@@ -378,11 +267,6 @@ namespace RosSharp.RosBridgeClientTest
                 keyInfo = Console.ReadKey();
             }
 
-            //while (true)
-            //{
-
-            //}
-
             // Disconnect ROS
             Console.WriteLine("Press any key to close...");
             Console.ReadKey(true);
@@ -416,14 +300,14 @@ namespace RosSharp.RosBridgeClientTest
             }
 
             //Console.WriteLine((msg).position[0]);
-            int thresh = 1000;
-            double time_taken = (DateTime.Now - start_timer).TotalMilliseconds;
-            if (counter == thresh)
-            {
-                double avg = Math.Round(1000 / (time_taken / counter));
-                Console.WriteLine("Ros messages per second: {0}", avg);
-                counter = 0;
-            }
+            //int thresh = 1000;
+            //double time_taken = (DateTime.Now - start_timer).TotalMilliseconds;
+            //if (counter == thresh)
+            //{
+            //    double avg = Math.Round(1000 / (time_taken / counter));
+            //    Console.WriteLine("Ros messages per second: {0}", avg);
+            //    counter = 0;
+            //}
         }
         private static void ServiceCallHandler(rosapi.GetParamResponse message)
         {
