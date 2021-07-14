@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>SolidEdgeSpy</id>
+        <version>0.0.0</version>
+        <title>Spy for Solid Edge</title>
+        <authors>Jason Newell</authors>
+        <iconUrl>https://solidedgespy.blob.core.windows.net/install/App.ico</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Spy for Solid Edge.</description>
+        <summary />
+        <releaseNotes />
+        <language>en-US</language>
+    </metadata>
+  <files>
+    <file src="bin\Release\*.*" target="lib\net45\" exclude="**\*.pdb;**\*.nupkg;**\*.vshost.*;**\*.xml"/>
+  </files>
+</package>

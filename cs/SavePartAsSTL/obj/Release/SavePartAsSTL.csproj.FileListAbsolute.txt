@@ -12,3 +12,4 @@ C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automati
 C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.csproj.CopyComplete
 C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.exe
 C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SavePartAsSTL\obj\Release\SavePartAsSTL.csprojAssemblyReference.cache

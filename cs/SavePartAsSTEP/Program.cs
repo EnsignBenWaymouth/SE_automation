@@ -15,23 +15,29 @@ namespace SavePartAsSTEP
         {
             SolidEdgeFramework.Application application = null;
             SolidEdgePart.PartDocument partDocument = null;
+            SolidEdgePart.SheetMetalDocument sheetDocument = null;
+            
 
             try
             {
                 SolidEdgeCommunity.OleMessageFilter.Register();
                 application = SolidEdgeCommunity.SolidEdgeUtils.Connect(false);
                 partDocument = application.GetActiveDocument<SolidEdgePart.PartDocument>(false);
-                
+                sheetDocument = application.GetActiveDocument<SolidEdgePart.SheetMetalDocument>(false);
+
+                //application.StartCommand(SolidEdgeConstants.AssemblyCommandConstants.AssemblyFileFileProperties);
+
                 if (partDocument != null)
                 {
                     string name_step = partDocument.Path + "\\" + partDocument.Name.Remove(partDocument.Name.Length - 4, 4) + ".stp";
                     Console.WriteLine(name_step);
                     partDocument.SaveCopyAs(name_step);
-                    //System.Threading.Thread.Sleep(2000);
-                    //while (true)
-                    //{
-                    //    int a;
-                    //}
+                }
+                else if (sheetDocument != null)
+                {
+                    string name = sheetDocument.Path + "\\" + sheetDocument.Name.Remove(sheetDocument.Name.Length - 4, 4) + ".stp";
+                    Console.WriteLine(name);
+                    sheetDocument.SaveCopyAs(name);
                 }
                 else
                 {

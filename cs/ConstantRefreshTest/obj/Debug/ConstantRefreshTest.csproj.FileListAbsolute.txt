@@ -1,0 +1,15 @@
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\ConstantRefreshTest.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\ConstantRefreshTest.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\Interop.SolidEdge.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\SolidEdge.Community.AddIn.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\SolidEdge.Community.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\SolidEdge.Community.Reader.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\Interop.SolidEdge.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\SolidEdge.Community.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\SolidEdge.Community.AddIn.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\bin\Debug\SolidEdge.Community.Reader.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\obj\Debug\ConstantRefreshTest.csprojAssemblyReference.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\obj\Debug\ConstantRefreshTest.csproj.CoreCompileInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\obj\Debug\ConstantRefreshTest.csproj.CopyComplete
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\obj\Debug\ConstantRefreshTest.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\ConstantRefreshTest\obj\Debug\ConstantRefreshTest.pdb

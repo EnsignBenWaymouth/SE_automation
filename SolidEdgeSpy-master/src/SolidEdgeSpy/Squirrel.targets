@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release'">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="assemblyInfo" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <SemanticVersion>$([System.Version]::Parse(%(assemblyInfo.Version)).ToString(3))</SemanticVersion>
+      <NuGetCommand>nuget pack $(ProjectDir)$(ProjectName).nuspec -Version $(SemanticVersion) -Properties Configuration=Release -OutputDirectory $(ProjectDir)</NuGetCommand>
+      <SquirrelCommand>squirrel --releasify $(ProjectDir)$(ProjectName).$(SemanticVersion).nupkg --no-msi --setupIcon App.ico</SquirrelCommand>
+    </PropertyGroup>
+    <Message Text="Executing: $(NuGetCommand)" Importance="High" />
+    <Exec Command="$(NuGetCommand)" />
+    <Message Text="Executing: $(SquirrelCommand)" Importance="High" />
+    <Exec Command="$(SquirrelCommand)" />
+  </Target>
+</Project>

@@ -1,0 +1,15 @@
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SaveAsPDF.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SaveAsPDF.pdb
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\Interop.SolidEdge.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SolidEdge.Community.AddIn.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SolidEdge.Community.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SolidEdge.Community.Reader.dll
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\Interop.SolidEdge.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SolidEdge.Community.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SolidEdge.Community.AddIn.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\bin\Debug\SolidEdge.Community.Reader.xml
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\obj\Debug\SaveAsPDF.csprojAssemblyReference.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\obj\Debug\SaveAsPDF.csproj.CoreCompileInputs.cache
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\obj\Debug\SaveAsPDF.csproj.CopyComplete
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\obj\Debug\SaveAsPDF.exe
+C:\Users\benjaminw\Documents\Samples-master (1)\Samples-master\Draft\SE Automation\cs\SaveAsPDF\obj\Debug\SaveAsPDF.pdb
