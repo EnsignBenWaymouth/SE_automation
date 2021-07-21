@@ -82,7 +82,10 @@ namespace RosSharp.RosBridgeClientTest
                 Console.WriteLine("Opening program");
                 // Get a reference to the active assembly document.
                 var document = application.GetActiveDocument<SolidEdgeAssembly.AssemblyDocument>(false);
-                string f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
+                Console.WriteLine(document.FullName);
+                //string f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
+                string f = "C:\\Users\\benjaminw\\Documents\\UR3e_UET Cartoner_Vacuum_6_Pocket_ros.asm";
+                //string f = "\\elsedge\\engineering\\Drawings\\Filling Hall 1\\BF03\\UET Cartoner Automation Ass'y\\UR3e_UET Cartoner_Vacuum_6_Pocket.asm";
                 var document_by_name = application.Documents.OpenInBackground<SolidEdgeAssembly.AssemblyDocument>(f);
                 //Console.WriteLine("Opening by active: " + document.DisplayName);
                 Console.WriteLine("Opening by filename: " + document_by_name.DisplayName);
@@ -144,63 +147,63 @@ namespace RosSharp.RosBridgeClientTest
                     angularRelations.Add(angle_6);
                     var occurrences_1 = d.Occurrences;
 
-                    // Create link references
-                    //foreach (var occurrence in occurrences_1.OfType<SolidEdgeAssembly.Occurrence>())
-                    //{
-                    //    if (occurrence.Name.Contains("Link1") || occurrence.Name.Contains("Link3") || occurrence.Name.Contains("Link5"))
-                    //    {
-                    //        var relations3d = (SolidEdgeAssembly.Relations3d)occurrence.Relations3d;
-                    //        var angleRelations = relations3d.OfType<SolidEdgeAssembly.AngularRelation3d>();
-                    //        foreach (var an in angleRelations)
-                    //        {
-                    //            string name = an.Occurrence1.Name;
-                    //            bool link1 = name.Contains(link1_str);
-                    //            if (link1)
-                    //            {
-                    //                //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[0]);
-                    //                //an.Angle = pose_arr[2] + Math.PI / 2;
-                    //                //pose_buffer[0] = pose_arr[2] + Math.PI / 2;
-                    //                angularRelations[0] = an;
-                    //                continue;
-                    //            }
-                    //            bool link2 = name.Contains(link2_str);
-                    //            if (link2)
-                    //            {
-                    //                //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[1]);
-                    //                angularRelations[1] = an;
-                    //                continue;
-                    //            }
-                    //            bool link3 = name.Contains(link3_str);
-                    //            if (link3)
-                    //            {
-                    //                //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[2]);
-                    //                angularRelations[2] = an;
-                    //                continue;
-                    //            }
-                    //            bool link4 = name.Contains(link4_str);
-                    //            if (link4)
-                    //            {
-                    //                //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[3]);
-                    //                angularRelations[3] = an;
-                    //                continue;
-                    //            }
-                    //            bool link5 = name.Contains(link5_str);
-                    //            if (link5)
-                    //            {
-                    //                //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[4]);
-                    //                angularRelations[4] = an;
-                    //                continue;
-                    //            }
-                    //            bool link6 = name.Contains(link6_str);
-                    //            if (link6)
-                    //            {
-                    //                //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[5]);
-                    //                angularRelations[5] = an;
-                    //                continue;
-                    //            }
-                    //        }
-                    //    }
-                    //}
+                    //// Create link references
+                    foreach (var occurrence in occurrences_1.OfType<SolidEdgeAssembly.Occurrence>())
+                    {
+                        if (occurrence.Name.Contains("Link1") || occurrence.Name.Contains("Link3") || occurrence.Name.Contains("Link5"))
+                        {
+                            var relations3d = (SolidEdgeAssembly.Relations3d)occurrence.Relations3d;
+                            var angleRelations = relations3d.OfType<SolidEdgeAssembly.AngularRelation3d>();
+                            foreach (var an in angleRelations)
+                            {
+                                string name = an.Occurrence1.Name;
+                                bool l1 = name.Contains(link1_str);
+                                if (l1)
+                                {
+                                    //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[0]);
+                                    //an.Angle = pose_arr[2] + Math.PI / 2;
+                                    //pose_buffer[0] = pose_arr[2] + Math.PI / 2;
+                                    angularRelations[0] = an;
+                                    continue;
+                                }
+                                bool l2 = name.Contains(link2_str);
+                                if (l2)
+                                {
+                                    //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[1]);
+                                    angularRelations[1] = an;
+                                    continue;
+                                }
+                                bool l3 = name.Contains(link3_str);
+                                if (l3)
+                                {
+                                    //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[2]);
+                                    angularRelations[2] = an;
+                                    continue;
+                                }
+                                bool l4 = name.Contains(link4_str);
+                                if (l4)
+                                {
+                                    //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[3]);
+                                    angularRelations[3] = an;
+                                    continue;
+                                }
+                                bool l5 = name.Contains(link5_str);
+                                if (l5)
+                                {
+                                    //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[4]);
+                                    angularRelations[4] = an;
+                                    continue;
+                                }
+                                bool l6 = name.Contains(link6_str);
+                                if (l6)
+                                {
+                                    //Console.WriteLine("Was {0}\nIs{1}", an.Angle, pose_arr[5]);
+                                    angularRelations[5] = an;
+                                    continue;
+                                }
+                            }
+                        }
+                    }
 
                     foreach (var occurrence in occurrences_1.OfType<SolidEdgeAssembly.Occurrence>())
                     {
@@ -264,32 +267,32 @@ namespace RosSharp.RosBridgeClientTest
                     int time_counter = 0;
 
                     // Continuously update joints
-                    //while (true)
-                    //{
-                    //    start = DateTime.Now;
-                    //    angularRelations[0].Angle = pose_arr[2] + Math.PI / 2;
-                    //    angularRelations[1].Angle = pose_arr[1] + Math.PI;
-                    //    angularRelations[2].Angle = -pose_arr[0] - Math.PI/2;
-                    //    angularRelations[3].Angle = pose_arr[3];
-                    //    angularRelations[4].Angle = pose_arr[4] - Math.PI / 2;
-                    //    angularRelations[5].Angle = pose_arr[5] + Math.PI;
+                    while (true)
+                    {
+                        start = DateTime.Now;
+                        angularRelations[0].Angle = pose_arr[2] + Math.PI / 2;
+                        angularRelations[1].Angle = pose_arr[1] + Math.PI;
+                        angularRelations[2].Angle = -pose_arr[0] - Math.PI / 2;
+                        angularRelations[3].Angle = pose_arr[3];
+                        angularRelations[4].Angle = pose_arr[4] - Math.PI / 2;
+                        angularRelations[5].Angle = pose_arr[5] + Math.PI;
 
-                    //    time_sum += (DateTime.Now - start).TotalMilliseconds;
-                    //    time_counter++;
-                    //    double avg = 1000;
-                    //    if (time_counter == 20)
-                    //    {
-                    //        avg = Math.Round(1000 / (time_sum / time_counter));
-                    //        Console.WriteLine("\nFPS: {0}\n", avg);
-                    //        time_counter = 0;
-                    //        time_sum = 0;
-                    //    }
-                    //    if(avg < 50)
-                    //    {
-                    //        Console.WriteLine("Refreshing");
-                    //        application.StartCommand(SolidEdgeConstants.AssemblyCommandConstants.AssemblyViewRefreshWindow);
-                    //    }                        
-                    //}
+                        time_sum += (DateTime.Now - start).TotalMilliseconds;
+                        time_counter++;
+                        double avg = 1000;
+                        if (time_counter == 20)
+                        {
+                            avg = Math.Round(1000 / (time_sum / time_counter));
+                            Console.WriteLine("\nFPS: {0}\n", avg);
+                            time_counter = 0;
+                            time_sum = 0;
+                        }
+                        if (avg < 50)
+                        {
+                            Console.WriteLine("Refreshing");
+                            application.StartCommand(SolidEdgeConstants.AssemblyCommandConstants.AssemblyViewRefreshWindow);
+                        }
+                    }
                     double[] p = new double[] { 0,0,0,0,0,0};
                     while (true)
                     {
@@ -366,7 +369,7 @@ namespace RosSharp.RosBridgeClientTest
 
             // Subscribers
             string pose_array_id = rosSocket.Subscribe<sensor_msgs.JointState>("/joint_states", PoseArrayCallback);
-            string tf_id = rosSocket.Subscribe<tf2.TFMessage>("/tf", tfCallback);
+            //string tf_id = rosSocket.Subscribe<tf2.TFMessage>("/tf", tfCallback);
             //string geometry_id = rosSocket.Subscribe<geometry.Transform>("")
 
             // Service Call:
