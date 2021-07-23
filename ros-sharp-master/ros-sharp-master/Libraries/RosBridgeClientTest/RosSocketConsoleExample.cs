@@ -158,6 +158,31 @@ namespace RosSharp.RosBridgeClientTest
                     angularRelations.Add(angle_6);
                     var occurrences_1 = d.Occurrences;
 
+                    // Need to calculate the rotation matrix values assign manually.
+
+                    System.Numerics.Quaternion quat = new System.Numerics.Quaternion(1, 1, 1, 1);
+
+                    //m11 = 
+                    //m12 = 
+                    //m13 = 
+                    //m14 = 
+                    //m21 = 
+                    //m22 = 
+                    //m23 = 
+                    //m24 = 
+                    //m31 = 
+                    //m32 = 
+                    //m33 = 
+                    //m34 = 
+                    //m41 = 
+                    //m42 = 
+                    //m43 = 
+                    //m44 = 
+                    System.Numerics.Matrix4x4 mat = new System.Numerics.Matrix4x4(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34, m41, m42, m43, m44);
+                    
+                    //mat.M11 = ?
+
+
                     //// Create link references
                     foreach (var occurrence in occurrences_1.OfType<SolidEdgeAssembly.Occurrence>())
                     {
@@ -425,14 +450,14 @@ namespace RosSharp.RosBridgeClientTest
         {
             if (!(msg.transforms[0].child_frame_id == "tool0_controller"))
             {
-                Console.WriteLine(msg.transforms[0].transform.rotation.w);
+                //Console.WriteLine(msg.transforms[0].transform.rotation.w);
                 var tfs = msg.transforms;
                 int i = 0; // Set start point at Shoulder in Base_link
                 int limit = 7; // Set end point after wrist 3 child
 
                 foreach (var t in tfs)
                 {
-                    Console.WriteLine(t.child_frame_id);
+                    //Console.WriteLine(t.child_frame_id);
 
                     Vector3 trans = new Vector3((float)t.transform.translation.x, (float)t.transform.translation.y, (float)t.transform.translation.z);
                     Vector4 trans4 = new Vector4((float)t.transform.translation.x, (float)t.transform.translation.y, (float)t.transform.translation.z, 1);
@@ -444,8 +469,8 @@ namespace RosSharp.RosBridgeClientTest
                     //Matrix4x4 m = Matrix4x4.TRS(trans, q, new Vector3(1,1,1));
                     Matrix4x4 mat = new Matrix4x4();
                     //mat.SetTRS(trans, q, scale);
-                    mat.SetColumn(3, trans4);
-                    Console.WriteLine("Here");
+                    //mat.SetColumn(3, trans4);
+                    //Console.WriteLine("Here");
                     ros_tfs[i] = mat;
 
                     i++;
@@ -453,7 +478,7 @@ namespace RosSharp.RosBridgeClientTest
                     {
                         break;
                     }
-                    Console.WriteLine(mat);
+                    //Console.WriteLine(mat);
                 }
             }
             
