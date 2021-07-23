@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Unity;
+using UnityEngine;
 
 // ROS includes
 using RosSharp.RosBridgeClient;
@@ -54,13 +56,22 @@ namespace RosSharp.RosBridgeClientTest
         static double sequence = -1;
         static readonly string uri = "ws://172.16.133.130:9090";
         static DateTime start_timer = new DateTime();
-        static double[] p1 = new double[] { 0, 0, 0, 0, 0, 0 };
-        static double[] p2 = new double[] { 0, 0, 0, 0, 0, 0 };
-        static double[] p3 = new double[] { 0, 0, 0, 0, 0, 0 };
-        static double[] p4 = new double[] { 0, 0, 0, 0, 0, 0 };
-        static double[] p5 = new double[] { 0, 0, 0, 0, 0, 0 };
-        static double[] p6 = new double[] { 0, 0, 0, 0, 0, 0 };
+        static double[] p1 = new double[] { 0, 0, 0, 0, 0, 0, 0 };
+        static double[] p2 = new double[] { 0, 0, 0, 0, 0, 0, 0 };
+        static double[] p3 = new double[] { 0, 0, 0, 0, 0, 0, 0 };
+        static double[] p4 = new double[] { 0, 0, 0, 0, 0, 0, 0 };
+        static double[] p5 = new double[] { 0, 0, 0, 0, 0, 0, 0 };
+        static double[] p6 = new double[] { 0, 0, 0, 0, 0, 0, 0 };
         static List<double[]> ros_transforms = new List<double[]>();
+
+        static List<Matrix4x4> ros_tfs = new List<Matrix4x4>();
+        static Matrix4x4 m1 = new Matrix4x4();
+        static Matrix4x4 m2 = new Matrix4x4();
+        static Matrix4x4 m3 = new Matrix4x4();
+        static Matrix4x4 m4 = new Matrix4x4();
+        static Matrix4x4 m5 = new Matrix4x4();
+        static Matrix4x4 m6 = new Matrix4x4();
+        
 
         public static void Tester()
         {
@@ -283,7 +294,7 @@ namespace RosSharp.RosBridgeClientTest
                         if (time_counter == 20)
                         {
                             avg = Math.Round(1000 / (time_sum / time_counter));
-                            Console.WriteLine("\nFPS: {0}\n", avg);
+                            //Console.WriteLine("\nFPS: {0}\n", avg);
                             time_counter = 0;
                             time_sum = 0;
                         }
@@ -367,9 +378,16 @@ namespace RosSharp.RosBridgeClientTest
             ros_transforms.Add(p5);
             ros_transforms.Add(p6);
 
+            ros_tfs.Add(m1);
+            ros_tfs.Add(m2);
+            ros_tfs.Add(m3);
+            ros_tfs.Add(m4);
+            ros_tfs.Add(m5);
+            ros_tfs.Add(m6);
+
             // Subscribers
             string pose_array_id = rosSocket.Subscribe<sensor_msgs.JointState>("/joint_states", PoseArrayCallback);
-            //string tf_id = rosSocket.Subscribe<tf2.TFMessage>("/tf", tfCallback);
+            string tf_id = rosSocket.Subscribe<tf2.TFMessage>("/tf", tfCallback);
             //string geometry_id = rosSocket.Subscribe<geometry.Transform>("")
 
             // Service Call:
@@ -405,18 +423,38 @@ namespace RosSharp.RosBridgeClientTest
 
         private static void tfCallback(tf2.TFMessage msg)
         {
-            Console.WriteLine(msg.transforms[0].transform.rotation.w);
-            var tfs = msg.transforms;
-            int i = 0;
-            foreach (var t in tfs)
+            if (!(msg.transforms[0].child_frame_id == "tool0_controller"))
             {
-                ros_transforms[i][0] = t.transform.translation.x;
-                ros_transforms[i][1] = t.transform.translation.y;
-                ros_transforms[i][2] = t.transform.translation.z;
-                ros_transforms[i][3] = t.transform.rotation.x;
-                ros_transforms[i][4] = t.transform.rotation.y;
-                ros_transforms[i][5] = t.transform.rotation.z;
-                i++;
+                Console.WriteLine(msg.transforms[0].transform.rotation.w);
+                var tfs = msg.transforms;
+                int i = 0; // Set start point at Shoulder in Base_link
+                int limit = 7; // Set end point after wrist 3 child
+
+                foreach (var t in tfs)
+                {
+                    Console.WriteLine(t.child_frame_id);
+
+                    Vector3 trans = new Vector3((float)t.transform.translation.x, (float)t.transform.translation.y, (float)t.transform.translation.z);
+                    Vector4 trans4 = new Vector4((float)t.transform.translation.x, (float)t.transform.translation.y, (float)t.transform.translation.z, 1);
+                    //Console.WriteLine(trans);
+                    Quaternion q = new Quaternion((float)t.transform.rotation.x, (float)t.transform.rotation.y, (float)t.transform.rotation.z, (float)t.transform.rotation.w);
+                    //Console.WriteLine(q);
+                    Vector3 scale = new Vector3(1, 1, 1);
+                    
+                    //Matrix4x4 m = Matrix4x4.TRS(trans, q, new Vector3(1,1,1));
+                    Matrix4x4 mat = new Matrix4x4();
+                    //mat.SetTRS(trans, q, scale);
+                    mat.SetColumn(3, trans4);
+                    Console.WriteLine("Here");
+                    ros_tfs[i] = mat;
+
+                    i++;
+                    if (i >= limit)
+                    {
+                        break;
+                    }
+                    Console.WriteLine(mat);
+                }
             }
             
         }
