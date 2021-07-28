@@ -21,6 +21,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows.Forms;
+using System.Drawing;
 
 // ROS includes
 using RosSharp.RosBridgeClient;
@@ -51,9 +53,12 @@ namespace RosSharp.RosBridgeClientTest
         static double sequence = -1;
         //static readonly string uri = "ws://192.168.239.134:9090";
         static readonly string uri = "ws://172.16.133.130:9090";
+        static readonly string textfile_name = "ip_address.txt";
+        static string IP = "";
         static DateTime start_timer = new DateTime();
         static DateTime start_timer_ros_tf = new DateTime();
         static int tf_counter = 0;
+        
 
         ///////                               ||    C1   ||    C2    ||     C3   ||    C4    ||
         static double[] arr0 = new double[16] { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
@@ -88,7 +93,7 @@ namespace RosSharp.RosBridgeClientTest
             try
             {
                 Console.WriteLine("Registering");
-
+                
                 // Register with OLE to handle concurrency issues on the current thread.
                 SolidEdgeCommunity.OleMessageFilter.Register();
                 Console.WriteLine("Registered");
@@ -99,15 +104,78 @@ namespace RosSharp.RosBridgeClientTest
                 application = SolidEdgeCommunity.SolidEdgeUtils.Connect(true, true);
                 Console.WriteLine("Opening program");
 
+
+                string current_path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                string textfile_path = current_path + "\\" + textfile_name;
+                Console.WriteLine("Reading IP from: " + textfile_path);
+
+                IP = System.IO.File.ReadAllText(textfile_path);
+                Console.WriteLine("Read IP: " + IP);
+                
+
                 // Get a reference to the active assembly document.
                 string f = null;
                 //f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
                 f = "\\\\elsedge\\engineering\\Drawings\\Filling Hall 1\\BF03\\UET Cartoner Automation Ass'y\\UR3e_test.asm";
                 //f = "C:\\Users\\benwa\\Documents\\1 Projects\\Part Library\\ur_robot\\Asm3.asm";
 
+                //ListBox lb = new ListBox();
+                //lb.Show();
+                //Console.WriteLine("Shown");
+
+
+                //string title = "text box";
+                //string promptText = "File enter name";
+                //string value = "*** Network location ***";
+
+                //Form form = new Form();
+                //Label label = new Label();
+                //TextBox textBox = new TextBox();
+                //Button buttonOk = new Button();
+                //Button buttonCancel = new Button();
+
+                //form.Text = title;
+                //label.Text = promptText;
+                //textBox.Text = value;
+
+                //buttonOk.Text = "OK";
+                //buttonCancel.Text = "Cancel";
+                //buttonOk.DialogResult = DialogResult.OK;
+                //buttonCancel.DialogResult = DialogResult.Cancel;
+
+                //label.SetBounds(9, 20, 372, 13);
+                //textBox.SetBounds(12, 36, 372, 20);
+                //buttonOk.SetBounds(228, 72, 75, 23);
+                //buttonCancel.SetBounds(309, 72, 75, 23);
+
+                //label.AutoSize = true;
+                //textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+                //buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                //buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+
+                //form.ClientSize = new Size(396, 107);
+                //form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+                //form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+                //form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                //form.StartPosition = FormStartPosition.CenterScreen;
+                //form.MinimizeBox = false;
+                //form.MaximizeBox = false;
+                //form.AcceptButton = buttonOk;
+                //form.CancelButton = buttonCancel;
+
+                //DialogResult dialogResult = form.ShowDialog();
+                //value = textBox.Text;
+
+                //Console.WriteLine(value);
+                ////// 
+                //Console.WriteLine("Value: " + value);
+                //Console.WriteLine("New: " + new_filename);
+
+                //f = value;
+
                 var document_by_name = application.Documents.OpenInBackground<SolidEdgeAssembly.AssemblyDocument>(f);
                 //var document_by_name = application.GetActiveDocument<SolidEdgeAssembly.AssemblyDocument>(false);
-                
+
                 //Console.WriteLine("Opening by active: " + document.DisplayName);
                 Console.WriteLine("Opening by filename: " + document_by_name.DisplayName);
                 Console.WriteLine("Filename: " + document_by_name.FullName);
