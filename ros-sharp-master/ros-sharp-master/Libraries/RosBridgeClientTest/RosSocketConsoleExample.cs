@@ -100,13 +100,17 @@ namespace RosSharp.RosBridgeClientTest
                 Console.WriteLine("Opening program");
 
                 // Get a reference to the active assembly document.
-                string f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
-                //string f = "C:\\Users\\benwa\\Documents\\1 Projects\\Part Library\\ur_robot\\Asm3.asm";
-                //string f = "\\elsedge\\engineering\\Drawings\\Filling Hall 1\\BF03\\UET Cartoner Automation Ass'y\\UR3e_UET Cartoner_Vacuum_6_Pocket.asm";
+                string f = null;
+                //f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
+                f = "\\\\elsedge\\engineering\\Drawings\\Filling Hall 1\\BF03\\UET Cartoner Automation Ass'y\\UR3e_test.asm";
+                //f = "C:\\Users\\benwa\\Documents\\1 Projects\\Part Library\\ur_robot\\Asm3.asm";
+
                 var document_by_name = application.Documents.OpenInBackground<SolidEdgeAssembly.AssemblyDocument>(f);
                 //var document_by_name = application.GetActiveDocument<SolidEdgeAssembly.AssemblyDocument>(false);
+                
                 //Console.WriteLine("Opening by active: " + document.DisplayName);
                 Console.WriteLine("Opening by filename: " + document_by_name.DisplayName);
+                Console.WriteLine("Filename: " + document_by_name.FullName);
 
                 var d = document_by_name;
 
@@ -120,6 +124,7 @@ namespace RosSharp.RosBridgeClientTest
                     string link4_str = "Link4";
                     string link5_str = "Link5";
                     string link6_str = "Link6";
+                    string link_EE_tool_str = "EE_tool";
 
                     SolidEdgeAssembly.Occurrence link1 = null;
                     SolidEdgeAssembly.Occurrence link2 = null;
@@ -127,6 +132,7 @@ namespace RosSharp.RosBridgeClientTest
                     SolidEdgeAssembly.Occurrence link4 = null;
                     SolidEdgeAssembly.Occurrence link5 = null;
                     SolidEdgeAssembly.Occurrence link6 = null;
+                    SolidEdgeAssembly.Occurrence link_EE_tool = null;
                     List<SolidEdgeAssembly.Occurrence> link_list = new List<SolidEdgeAssembly.Occurrence>();
                     link_list.Add(link1);
                     link_list.Add(link2);
@@ -134,6 +140,7 @@ namespace RosSharp.RosBridgeClientTest
                     link_list.Add(link4);
                     link_list.Add(link5);
                     link_list.Add(link6);
+                    link_list.Add(link_EE_tool);
 
                     var occurrences_1 = d.Occurrences;
 
@@ -177,6 +184,12 @@ namespace RosSharp.RosBridgeClientTest
                             link_list[5] = occurrence;
                             continue;
                         }
+                        bool l7 = name.Contains(link_EE_tool_str);
+                        if(l7)
+                        {
+                            link_list[6] = occurrence;
+                            continue;
+                        }
                     }
 
                     // Wait for ROS
@@ -201,6 +214,14 @@ namespace RosSharp.RosBridgeClientTest
                         link_list[3].PutMatrix(arr3, true);
                         link_list[4].PutMatrix(arr4, true);
                         link_list[5].PutMatrix(arr5, true);
+                        if(link_list[6] != null)
+                        {
+                            link_list[6].PutMatrix(arr5, true);  // EE_link base coordinate at Tool attachment
+                        }
+                        else
+                        {
+                            Console.WriteLine("null");
+                        }
 
                         time_sum += (DateTime.Now - start).TotalMilliseconds;
                         time_counter++;
@@ -208,7 +229,7 @@ namespace RosSharp.RosBridgeClientTest
                         if (time_counter == 20)
                         {
                             avg = Math.Round(1000 / (time_sum / time_counter));
-                            Console.WriteLine("\nFPS: {0}\n", avg);
+                            Console.WriteLine("\nUR Update FPS: {0}\n", avg);
                             time_counter = 0;
                             time_sum = 0;
                         }
