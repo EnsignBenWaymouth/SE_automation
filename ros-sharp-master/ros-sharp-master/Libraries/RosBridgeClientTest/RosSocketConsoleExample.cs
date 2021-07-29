@@ -23,6 +23,11 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Windows;
+using Simplify.Windows;
+using Simplify.Windows.Forms.Controls;
+using Microsoft.WindowsAPICodePack.Controls;
+
 
 // ROS includes
 using RosSharp.RosBridgeClient;
@@ -52,8 +57,10 @@ namespace RosSharp.RosBridgeClientTest
         static int counter = 0;
         static double sequence = -1;
         //static readonly string uri = "ws://192.168.239.134:9090";
-        static readonly string uri = "ws://172.16.133.130:9090";
-        static readonly string textfile_name = "ip_address.txt";
+        //static string uri = "ws://172.16.133.130:9090";s
+        static string websocket_address = "";
+        static readonly string IP_textfile_name = "IP ADDRESS.txt";
+        static readonly string Locations_textfile_name = "UR ROBOT LOCATIONS.TXT";
         static string IP = "";
         static DateTime start_timer = new DateTime();
         static DateTime start_timer_ros_tf = new DateTime();
@@ -105,73 +112,113 @@ namespace RosSharp.RosBridgeClientTest
                 Console.WriteLine("Opening program");
 
 
-                string current_path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-                string textfile_path = current_path + "\\" + textfile_name;
-                Console.WriteLine("Reading IP from: " + textfile_path);
-
-                IP = System.IO.File.ReadAllText(textfile_path);
-                Console.WriteLine("Read IP: " + IP);
-                
-
                 // Get a reference to the active assembly document.
-                string f = null;
-                //f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
-                f = "\\\\elsedge\\engineering\\Drawings\\Filling Hall 1\\BF03\\UET Cartoner Automation Ass'y\\UR3e_test.asm";
-                //f = "C:\\Users\\benwa\\Documents\\1 Projects\\Part Library\\ur_robot\\Asm3.asm";
+                string f = null;              
+                bool ask_user_for_file_location = true;
+                // Read IP
+                if (ask_user_for_file_location)
+                {
+                    string current_path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                    string textfile_path = current_path + "\\" + Locations_textfile_name;
+                    Console.WriteLine("Reading IP from: " + textfile_path);
 
-                //ListBox lb = new ListBox();
-                //lb.Show();
+                    string[] all_file_lines = System.IO.File.ReadAllLines(textfile_path);
+                    Console.WriteLine("Choose a UR robot file to open:");
+                    int i = 0;
+                    foreach (string line in all_file_lines)
+                    {
+                        Console.WriteLine(i++ + "  ----  " + line);
+                    }
+
+                                        
+                    int n = -1;
+                    while (n < 0)
+                    {
+                        Console.Write("\nType the corresponding number and press enter: ");
+                        string user_input = Console.ReadLine();
+                        try
+                        {
+                            n = Int32.Parse(user_input);
+                        }
+                        catch(FormatException e)
+                        {
+                            n = -1;
+                            Console.WriteLine("You didn't enter a number...");                            
+                        }
+                        if((n > 0) && (n < all_file_lines.Length))
+                        {
+                            f = all_file_lines[n];
+                        }
+                        else
+                        {
+                            Console.WriteLine("'" + n + "' is out of range");
+                        }
+                    }
+                    //Console.WriteLine("Number you entered: " + n);
+                }
+                else
+                {
+                    //f = "C:\\Users\\benjaminw\\Documents\\UR3e_test.asm";
+                    f = "\\\\elsedge\\engineering\\Drawings\\Filling Hall 1\\BF03\\UET Cartoner Automation Ass'y\\UR3e, Vacuum, UET Automation.asm";
+                    //f = "\\\\elsedge\\engineering\\Drawings\\UR3e\\Modified Orientation\\UR3e.asm";
+                    //f = "\\\\elsedge\\engineering\\Drawings\\UR5e\\Modified Orientation\\UR5e.asm";
+                    //f = "\\\\elsedge\\engineering\\Drawings\\UR10e\\Modified Orientation\\UR10e.asm";
+                    //f = "\\\\elsedge\\engineering\\Drawings\\UR16e\\Modified Orientation\\UR16e.asm";
+                    //f = "C:\\Users\\benwa\\Documents\\1 Projects\\Part Library\\ur_robot\\Asm3.asm";
+                }
+
                 //Console.WriteLine("Shown");
+                bool ask_for_user_input = false;
+                if (ask_for_user_input)
+                {
+                    string title = "text box";
+                    string promptText = "File enter name";
+                    string value = "*** Network location ***";
 
+                    Form form = new Form();
+                    Label label = new Label();
+                    TextBox textBox = new TextBox();
+                    Button buttonOk = new Button();
+                    Button buttonCancel = new Button();
 
-                //string title = "text box";
-                //string promptText = "File enter name";
-                //string value = "*** Network location ***";
+                    form.Text = title;
+                    label.Text = promptText;
+                    textBox.Text = value;
 
-                //Form form = new Form();
-                //Label label = new Label();
-                //TextBox textBox = new TextBox();
-                //Button buttonOk = new Button();
-                //Button buttonCancel = new Button();
+                    buttonOk.Text = "OK";
+                    buttonCancel.Text = "Cancel";
+                    buttonOk.DialogResult = DialogResult.OK;
+                    buttonCancel.DialogResult = DialogResult.Cancel;
 
-                //form.Text = title;
-                //label.Text = promptText;
-                //textBox.Text = value;
+                    label.SetBounds(9, 20, 372, 13);
+                    textBox.SetBounds(12, 36, 372, 20);
+                    buttonOk.SetBounds(228, 72, 75, 23);
+                    buttonCancel.SetBounds(309, 72, 75, 23);
 
-                //buttonOk.Text = "OK";
-                //buttonCancel.Text = "Cancel";
-                //buttonOk.DialogResult = DialogResult.OK;
-                //buttonCancel.DialogResult = DialogResult.Cancel;
+                    label.AutoSize = true;
+                    textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
+                    buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                    buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
-                //label.SetBounds(9, 20, 372, 13);
-                //textBox.SetBounds(12, 36, 372, 20);
-                //buttonOk.SetBounds(228, 72, 75, 23);
-                //buttonCancel.SetBounds(309, 72, 75, 23);
+                    form.ClientSize = new Size(396, 107);
+                    form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
+                    form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
+                    form.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    form.StartPosition = FormStartPosition.CenterScreen;
+                    form.MinimizeBox = false;
+                    form.MaximizeBox = false;
+                    form.AcceptButton = buttonOk;
+                    form.CancelButton = buttonCancel;
 
-                //label.AutoSize = true;
-                //textBox.Anchor = textBox.Anchor | AnchorStyles.Right;
-                //buttonOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-                //buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                    DialogResult dialogResult = form.ShowDialog();
+                    value = textBox.Text;
 
-                //form.ClientSize = new Size(396, 107);
-                //form.Controls.AddRange(new Control[] { label, textBox, buttonOk, buttonCancel });
-                //form.ClientSize = new Size(Math.Max(300, label.Right + 10), form.ClientSize.Height);
-                //form.FormBorderStyle = FormBorderStyle.FixedDialog;
-                //form.StartPosition = FormStartPosition.CenterScreen;
-                //form.MinimizeBox = false;
-                //form.MaximizeBox = false;
-                //form.AcceptButton = buttonOk;
-                //form.CancelButton = buttonCancel;
-
-                //DialogResult dialogResult = form.ShowDialog();
-                //value = textBox.Text;
-
-                //Console.WriteLine(value);
-                ////// 
-                //Console.WriteLine("Value: " + value);
-                //Console.WriteLine("New: " + new_filename);
-
-                //f = value;
+                    Console.WriteLine(value);
+                    //// 
+                    Console.WriteLine("Value: " + value);
+                    f = value;
+                }
+                
 
                 var document_by_name = application.Documents.OpenInBackground<SolidEdgeAssembly.AssemblyDocument>(f);
                 //var document_by_name = application.GetActiveDocument<SolidEdgeAssembly.AssemblyDocument>(false);
@@ -288,7 +335,8 @@ namespace RosSharp.RosBridgeClientTest
                         }
                         else
                         {
-                            Console.WriteLine("null");
+                            continue;
+                            Console.WriteLine("No 'tool' found");
                         }
 
                         time_sum += (DateTime.Now - start).TotalMilliseconds;
@@ -325,10 +373,24 @@ namespace RosSharp.RosBridgeClientTest
         }
 
 
+        /// <summary>
+        /// Main function with thread
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
+            // Read IP
+            string current_path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+            string textfile_path = current_path + "\\" + IP_textfile_name;
+            Console.WriteLine("Reading IP from: " + textfile_path);
+
+            IP = System.IO.File.ReadAllText(textfile_path);
+            Console.WriteLine("Read IP: " + IP);
+            websocket_address = "ws://" + IP + ":9090";
+            Console.WriteLine("Websocket Address: " + websocket_address);
+
             //RosSocket rosSocket = new RosSocket(new RosBridgeClient.Protocols.WebSocketSharpProtocol(uri));
-            RosSocket rosSocket = new RosSocket(new RosBridgeClient.Protocols.WebSocketNetProtocol(uri));
+            RosSocket rosSocket = new RosSocket(new RosBridgeClient.Protocols.WebSocketNetProtocol(websocket_address));
 
             // Publication:
             std_msgs.String message = new std_msgs.String
@@ -351,7 +413,7 @@ namespace RosSharp.RosBridgeClientTest
             //string geometry_id = rosSocket.Subscribe<geometry.Transform>("")
 
             // Service Call:
-            rosSocket.CallService<rosapi.GetParamRequest, rosapi.GetParamResponse>("/rosapi/get_param", ServiceCallHandler, new rosapi.GetParamRequest("/rosdistro", "default"));
+            //rosSocket.CallService<rosapi.GetParamRequest, rosapi.GetParamResponse>("/rosapi/get_param", ServiceCallHandler, new rosapi.GetParamRequest("/rosdistro", "default"));
 
             // Service Response:
             //string service_id = rosSocket.AdvertiseService<std_srvs.TriggerRequest, std_srvs.TriggerResponse>("/service_response_test", ServiceResponseHandler);
@@ -363,16 +425,20 @@ namespace RosSharp.RosBridgeClientTest
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
 
-            Console.WriteLine("\nPress ENTER to exit the program...");
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-            while (keyInfo.Key != ConsoleKey.Enter)
+            //Console.WriteLine("\nPress ENTER to exit the program...\n");
+            //ConsoleKeyInfo keyInfo = Console.ReadKey();
+            //while (keyInfo.Key != ConsoleKey.Enter)
+            //{
+                //keyInfo = Console.ReadKey();
+            //}
+            while(true)
             {
-                keyInfo = Console.ReadKey();
+                continue;
             }
 
             // Disconnect ROS
-            Console.WriteLine("Press any key to close...");
-            Console.ReadKey(true);
+            //Console.WriteLine("Press any key to close...");
+            //Console.ReadKey(true);
             //rosSocket.Unsubscribe(pose_array_id);
             rosSocket.Unsubscribe(tf_id);
             //rosSocket.UnadvertiseService(service_id);
@@ -530,17 +596,17 @@ namespace RosSharp.RosBridgeClientTest
             arr5[14] = base_to_wrist3.M43;
 
 
-            tf_counter++;
-            double thresh = 1000;
-            if (tf_counter == thresh)
-            {
-                //Console.WriteLine("Ros code: " + arr5[14]);
-                double time = ((DateTime.Now - start_timer_ros_tf).TotalMilliseconds)/ thresh;
-                time = time / 1000; // Convert to seconds
-                Console.WriteLine("ROS TF FPS: " + Math.Round(1/time,0) );
-                tf_counter = 0;
-                start_timer_ros_tf = DateTime.Now;
-            }
+            //tf_counter++;
+            //double thresh = 1000;
+            //if (tf_counter == thresh)
+            //{
+            //    //Console.WriteLine("Ros code: " + arr5[14]);
+            //    double time = ((DateTime.Now - start_timer_ros_tf).TotalMilliseconds)/ thresh;
+            //    time = time / 1000; // Convert to seconds
+            //    Console.WriteLine("ROS TF FPS: " + Math.Round(1/time,0) );
+            //    tf_counter = 0;
+            //    start_timer_ros_tf = DateTime.Now;
+            //}
 
         }
 
