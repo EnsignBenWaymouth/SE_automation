@@ -124,7 +124,7 @@ namespace RosSharp.RosBridgeClientTest
 
                     string[] all_file_lines = System.IO.File.ReadAllLines(textfile_path);
                     Console.WriteLine("Choose a UR robot file to open:");
-                    int i = 0;
+                    int i = 1;
                     foreach (string line in all_file_lines)
                     {
                         Console.WriteLine(i++ + "  ----  " + line);
@@ -139,20 +139,22 @@ namespace RosSharp.RosBridgeClientTest
                         try
                         {
                             n = Int32.Parse(user_input);
+                            if ((n > 0) && (n <= all_file_lines.Length))
+                            {
+                                f = all_file_lines[n-1];
+                            }
+                            else
+                            {                                
+                                Console.WriteLine("'" + n + "' is out of range");
+                                n = -1;
+                            }
                         }
                         catch(FormatException e)
                         {
                             n = -1;
-                            Console.WriteLine("You didn't enter a number...");                            
+                            Console.WriteLine("You didn't enter a number...");
                         }
-                        if((n > 0) && (n < all_file_lines.Length))
-                        {
-                            f = all_file_lines[n];
-                        }
-                        else
-                        {
-                            Console.WriteLine("'" + n + "' is out of range");
-                        }
+                        
                     }
                     //Console.WriteLine("Number you entered: " + n);
                 }
