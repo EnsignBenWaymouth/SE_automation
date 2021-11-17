@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RosBridgeClient", "RosBridgeClient\RosBridgeClient.csproj", "{27CD898A-8840-4CDD-A475-4A672FD2EF50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RosBridgeClientTest", "RosBridgeClientTest\RosBridgeClientTest.csproj", "{4E1BB3D0-8254-4D23-BD1B-F6EC7AA562FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27CD898A-8840-4CDD-A475-4A672FD2EF50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CD898A-8840-4CDD-A475-4A672FD2EF50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CD898A-8840-4CDD-A475-4A672FD2EF50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CD898A-8840-4CDD-A475-4A672FD2EF50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1BB3D0-8254-4D23-BD1B-F6EC7AA562FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1BB3D0-8254-4D23-BD1B-F6EC7AA562FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1BB3D0-8254-4D23-BD1B-F6EC7AA562FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1BB3D0-8254-4D23-BD1B-F6EC7AA562FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2519EBF6-8A2F-4BD8-80C1-34323F239119}
+	EndGlobalSection
+EndGlobal
