@@ -22,7 +22,7 @@ After you have made changes, push them to the servers.
 2.	Run the following commands:
 	git add .
 
-	git commit -m "<description of changes>"
+	git commit -m "..description of changes.."
 
 	git push
 
