@@ -169,7 +169,8 @@ namespace RosSharp.RosBridgeClientTest
                     //f = "C:\\Users\\benwa\\Documents\\1 Projects\\Part Library\\ur_robot\\Asm3.asm";
                 }                
 
-                var document_by_name = application.Documents.OpenInBackground<SolidEdgeAssembly.AssemblyDocument>(f);
+                //var document_by_name = application.Documents.OpenInBackground<SolidEdgeAssembly.AssemblyDocument>(f);
+                var document_by_name = application.Documents.Open<SolidEdgeAssembly.AssemblyDocument>(f);
                 //var document_by_name = application.GetActiveDocument<SolidEdgeAssembly.AssemblyDocument>(false);
 
                 //Console.WriteLine("Opening by active: " + document.DisplayName);
