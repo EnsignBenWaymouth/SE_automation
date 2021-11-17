@@ -60,12 +60,8 @@ namespace RosSharp.RosBridgeClientTest
         //static string uri = "ws://172.16.133.130:9090";s
         static string websocket_address = "";
         static readonly string IP_textfile_name = "IP ADDRESS.txt";
-        static readonly string Locations_textfile_name = "UR ROBOT LOCATIONS.TXT";
-        static string IP = "";
-        static DateTime start_timer = new DateTime();
-        static DateTime start_timer_ros_tf = new DateTime();
-        static int tf_counter = 0;
-        
+        static readonly string Locations_textfile_name = "UR ROBOT LOCATIONS.txt";
+        static string IP = "";        
 
         ///////                               ||    C1   ||    C2    ||     C3   ||    C4    ||
         static double[] arr0 = new double[16] { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
@@ -94,7 +90,7 @@ namespace RosSharp.RosBridgeClientTest
 
         public static void Tester()
         {
-            Console.WriteLine("Trying");
+            //Console.WriteLine("Trying");
             SolidEdgeFramework.Application application = null;
             Console.WriteLine("Setting app");
             try
@@ -109,8 +105,26 @@ namespace RosSharp.RosBridgeClientTest
 
                 // Connect to or start Solid Edge.
                 application = SolidEdgeCommunity.SolidEdgeUtils.Connect(true, true);
-                Console.WriteLine("Opening program");
+                //Console.WriteLine("Opening program");
+                Console.WriteLine("\n\n****UR Robot Simulation in SolidEdge****");
+                Console.WriteLine("Caution..");
+                Console.WriteLine("If you add a robot to the list there's a few things you need to consider:");
+                Console.WriteLine("Consult the readme.md in the root of this project");
+                Console.WriteLine("A.	The part files are modified with very specific coordinate system offsets.");
+                Console.WriteLine("B.	The part file are renamed to contain keywords, e.g. 'Base', 'Link1', 'Link2', ... , 'Link6'");
+                Console.WriteLine("C.	If you want to have a TOOL move with the end effector of the robot, then in its name it MUST");
+                Console.WriteLine("     contain the following string 'EE_tool'. You will also need to adjust the base coordinate system");
+                Console.WriteLine("     of the TOOL assembly or part file, this will become obvious when you run the program.");
+                Console.Write("\n\n");
 
+                // Wait for ROS
+                Console.WriteLine("Attempting Connection to the UR at: " + IP + ":9090");
+                while (sequence == -1)
+                {
+                    //Console.WriteLine("Waiting");
+                    continue;
+                }
+                Console.WriteLine("Connected to the UR!\n");
 
                 // Get a reference to the active assembly document.
                 string f = null;              
@@ -120,7 +134,7 @@ namespace RosSharp.RosBridgeClientTest
                 {
                     string current_path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
                     string textfile_path = current_path + "\\" + Locations_textfile_name;
-                    Console.WriteLine("Reading IP from: " + textfile_path);
+                    Console.WriteLine("Reading robot locations from: " + textfile_path + "\n");
 
                     string[] all_file_lines = System.IO.File.ReadAllLines(textfile_path);
                     Console.WriteLine("Choose a UR robot file to open:");
@@ -257,13 +271,6 @@ namespace RosSharp.RosBridgeClientTest
                         }
                     }
 
-                    // Wait for ROS
-                    while (sequence == -1)
-                    {
-                        //Console.WriteLine("Waiting");
-                        continue;
-                    }
-
                     // Timer
                     DateTime start = new DateTime();
                     double time_sum = 0;
@@ -332,12 +339,12 @@ namespace RosSharp.RosBridgeClientTest
             // Read IP
             string current_path = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             string textfile_path = current_path + "\\" + IP_textfile_name;
-            Console.WriteLine("Reading IP from: " + textfile_path);
+            Console.WriteLine("Reading IP from: " + textfile_path + "\n");
 
             IP = System.IO.File.ReadAllText(textfile_path);
             Console.WriteLine("Read IP: " + IP);
             websocket_address = "ws://" + IP + ":9090";
-            Console.WriteLine("Websocket Address: " + websocket_address);
+            //Console.WriteLine("Websocket Address: " + websocket_address);
 
             //RosSocket rosSocket = new RosSocket(new RosBridgeClient.Protocols.WebSocketSharpProtocol(uri));
             RosSocket rosSocket = new RosSocket(new RosBridgeClient.Protocols.WebSocketNetProtocol(websocket_address));
@@ -346,9 +353,7 @@ namespace RosSharp.RosBridgeClientTest
             std_msgs.String message = new std_msgs.String
             {
                 data = "publication test masdasdessage data"
-            };
-
-            Console.WriteLine("Connected");
+            };            
 
             ros_tfs.Add(m1);
             ros_tfs.Add(m2);
@@ -367,8 +372,6 @@ namespace RosSharp.RosBridgeClientTest
 
             // Service Response:
             //string service_id = rosSocket.AdvertiseService<std_srvs.TriggerRequest, std_srvs.TriggerResponse>("/service_response_test", ServiceResponseHandler);
-
-            start_timer_ros_tf = DateTime.Now;
 
             // Connect to solid edge
             Thread thread = new Thread(new ThreadStart(Tester));
@@ -544,28 +547,10 @@ namespace RosSharp.RosBridgeClientTest
             arr5[12] = base_to_wrist3.M41;
             arr5[13] = base_to_wrist3.M42;
             arr5[14] = base_to_wrist3.M43;
-
-
-            //tf_counter++;
-            //double thresh = 1000;
-            //if (tf_counter == thresh)
-            //{
-            //    //Console.WriteLine("Ros code: " + arr5[14]);
-            //    double time = ((DateTime.Now - start_timer_ros_tf).TotalMilliseconds)/ thresh;
-            //    time = time / 1000; // Convert to seconds
-            //    Console.WriteLine("ROS TF FPS: " + Math.Round(1/time,0) );
-            //    tf_counter = 0;
-            //    start_timer_ros_tf = DateTime.Now;
-            //}
-
         }
 
         private static void PoseArrayCallback(sensor_msgs.JointState msg)
         {
-            if (counter == 0)
-            {
-                start_timer = DateTime.Now;
-            }
             counter++;
 
             sequence = msg.header.seq;
@@ -591,34 +576,3 @@ namespace RosSharp.RosBridgeClientTest
         //}
     }
 }
-
-//arr0 = new double[16] { base_to_shoulder.M11, base_to_shoulder.M12, base_to_shoulder.M13, base_to_shoulder.M14,
-//                        base_to_shoulder.M21, base_to_shoulder.M22, base_to_shoulder.M22, base_to_shoulder.M22,
-//                        base_to_shoulder.M31, base_to_shoulder.M32, base_to_shoulder.M33, base_to_shoulder.M34,
-//                        base_to_shoulder.M41, base_to_shoulder.M42, base_to_shoulder.M43, base_to_shoulder.M44
-//};
-//arr1 = new double[16] { base_to_upperArm.M11, base_to_upperArm.M12, base_to_upperArm.M13, base_to_upperArm.M14,
-//                        base_to_upperArm.M21, base_to_upperArm.M22, base_to_upperArm.M22, base_to_upperArm.M22,
-//                        base_to_upperArm.M31, base_to_upperArm.M32, base_to_upperArm.M33, base_to_upperArm.M34,
-//                        base_to_upperArm.M41, base_to_upperArm.M42, base_to_upperArm.M43, base_to_upperArm.M44
-//};
-//arr2 = new double[16] { base_to_forearm.M11, base_to_forearm.M12, base_to_forearm.M13, base_to_forearm.M14,
-//                        base_to_forearm.M21, base_to_forearm.M22, base_to_forearm.M22, base_to_forearm.M22,
-//                        base_to_forearm.M31, base_to_forearm.M32, base_to_forearm.M33, base_to_forearm.M34,
-//                        base_to_forearm.M41, base_to_forearm.M42, base_to_forearm.M43, base_to_forearm.M44
-//};
-//arr3 = new double[16] { base_to_wrist1.M11, base_to_wrist1.M12, base_to_wrist1.M13, base_to_wrist1.M14,
-//                        base_to_wrist1.M21, base_to_wrist1.M22, base_to_wrist1.M22, base_to_wrist1.M22,
-//                        base_to_wrist1.M31, base_to_wrist1.M32, base_to_wrist1.M33, base_to_wrist1.M34,
-//                        base_to_wrist1.M41, base_to_wrist1.M42, base_to_wrist1.M43, base_to_wrist1.M44
-//};
-//arr4 = new double[16] { base_to_wrist2.M11, base_to_wrist2.M12, base_to_wrist2.M13, base_to_wrist2.M14,
-//                        base_to_wrist2.M21, base_to_wrist2.M22, base_to_wrist2.M22, base_to_wrist2.M22,
-//                        base_to_wrist2.M31, base_to_wrist2.M32, base_to_wrist2.M33, base_to_wrist2.M34,
-//                        base_to_wrist2.M41, base_to_wrist2.M42, base_to_wrist2.M43, base_to_wrist2.M44
-//};
-//arr5 = new double[16] { base_to_wrist3.M11, base_to_wrist3.M12, base_to_wrist3.M13, base_to_wrist3.M14,
-//                        base_to_wrist3.M21, base_to_wrist3.M22, base_to_wrist3.M22, base_to_wrist3.M22,
-//                        base_to_wrist3.M31, base_to_wrist3.M32, base_to_wrist3.M33, base_to_wrist3.M34,
-//                        base_to_wrist3.M41, base_to_wrist3.M42, base_to_wrist3.M43, base_to_wrist3.M44
-//};

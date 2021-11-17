@@ -1,5 +1,0 @@
-\\elsedge\engineering\Drawings\Filling Hall 1\BF03\UET Cartoner Automation Ass'y\UR3e, Vacuum, UET Automation.asm
-\\elsedge\engineering\Drawings\UR3e\Modified Orientation\UR3e.asm
-\\elsedge\engineering\Drawings\UR5e\Modified Orientation\UR5e.asm
-\\elsedge\engineering\Drawings\UR10e\Modified Orientation\UR10e.asm
-\\elsedge\engineering\Drawings\UR16e\Modified Orientation\UR16e.asm
